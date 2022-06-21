@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <title>Project List</title>
+</head>
+
+<body>
+
+<header>
+    <!--/*/ <th:block th:include="fragments/header :: header('users-list')"></th:block> /*/-->
+</header>
+
+<main class="container">
+    <div class="card mb-3">
+
+        <h1 class="my-highest-header card-header">Project List</h1>
+
+        <div class="card card-body">
+            <table class="table table-hover text-left" th:object="${projectList}">
+
+                <thead class="table-info">
+                <tr>
+                    <th>Project name</th>
+                    <th class="d-none d-lg-table-cell">Project manager</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    <th>Update</th>
+                    <th>Details</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="project:${projectList}">
+
+                    <!--Email-->
+                    <td th:text="${project.getName()}" class="d-none d-lg-table-cell"></td>
+
+                    <!--Tasks completed-->
+                    <td th:text="${project.getManager()}" class="d-none d-md-table-cell"></td>
+
+                    <!--Description-->
+                    <td th:text="${project.getDescription()}" class="d-none d-md-table-cell"></td>
+
+
+                    <td>
+                        <a data-toggle="modal"
+                           th:href="${'project/delete/' + project.id}"
+                           class="btn btn-outline-danger btn-sm">Delete
+                        </a>
+                    </td>
+
+                    <td>
+                        <div th:replace="fragments/create-project-modal :: create-project-modal"></div>
+                        <a data-toggle="modal" data-target="#modal-soft-delete"
+                           th:href="${'project/updateProject/' + project.id}"
+                           class="btn btn-outline-info btn-sm">Update
+                        </a>
+                    </td>
+
+                    <td>
+                        <a data-toggle="modal" data-target="#create-project-modal"
+
+                           th:href="${'project/delete/' + project.id}"
+                           class="btn btn-outline-secondary btn-sm">Details
+                        </a>
+                    </td>
+
+<!--                    &lt;!&ndash;Delete button&ndash;&gt;-->
+<!--                    <td th:if="${isAdminSigned and !user.isAdmin()}">-->
+<!--                        <a data-toggle="modal" data-target="#modal-soft-delete"-->
+<!--                           th:attr="data-target='#modal-soft-delete'+${user.id}"-->
+<!--                           th:href="${'user/delete/' + user.id}"-->
+<!--                           class="btn btn-outline-danger btn-sm">Delete-->
+<!--                        </a>-->
+<!--                    </td>-->
+<!--                    <td th:if="${isAdminSigned and user.isAdmin()}"></td>-->
+
+<!--                    &lt;!&ndash;Update Role button&ndash;&gt;-->
+<!--                    <td th:if="${!isUserSigned and !user.isAdmin()}">-->
+<!--                        <a data-toggle="modal" data-target="#modal-soft-delete"-->
+<!--                           th:attr="data-target='#modal-soft-delete'+${user.id}"-->
+<!--                           th:href="${'user/updateRoleUser/' + user.id}"-->
+<!--                           class="btn btn-outline-success btn-sm">Admin-->
+<!--                        </a>-->
+<!--                    </td>-->
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+
+<!--remain scroll position after redirect-->
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+    <title>Project Detail</title>
+    <script src="https://kit.fontawesome.com/797e60a2e0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<header>
+    <!--/*/ <th:block th:include="fragments/header :: header('profile')"></th:block> /*/-->
+</header>
+
+<main class="container">
+
+    <div class="card mb-3" th:object="${project}">
+        <h1 class="my-highest-header card-header" th:text="Project  + ${project.getName()}"></h1>
+
+        <div class="card card-body">
+<!--            <div class="row">-->
+
+<!--                <div class="col-sm-10">-->
+<!--                    <h2 class="my-second-header" th:text="${user.name}"></h2>-->
+<!--                    <h2 class="my-second-header" th:text="'email: '+${user.email}"></h2>-->
+<!--                    <button class="btn btn-primary"-->
+<!--                            data-toggle="modal"-->
+<!--                            data-target="#createProjectModal"-->
+<!--                            sec:authorize="hasRole('ROLE_ADMIN')">Create Project</button>-->
+<!--                    <div th:replace="fragments/create-project-modal :: create-project-modal"></div>-->
+<!--                </div>-->
+<!--                <div class="col-6 col-sm-2">-->
+<!--                    <div class="card card-body mb-3 p-2">-->
+<!--                        <img th:src="${user.photo}" alt="user photo" class="embed-responsive embed-responsive-3by4">-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div >
+
+<!--            <table class="my-tab table text-left">-->
+
+<!--                <thead class="table-info">-->
+<!--                <tr>-->
+<!--                    <th style="width:20%">Task name</th>-->
+<!--                    <th style="width:50%" class="d-none d-sm-table-cell">Description</th>-->
+<!--                    <th style="width: 10%">Project</th>-->
+<!--                    <th style="width:16%">Date</th>-->
+<!--                    <th style="width:7%">Days left</th>-->
+<!--                    <th style="width:7%">Completed</th>-->
+
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                <tr th:each="t : ${tasksOwned}">-->
+
+<!--                    <td class="text-left" th:text="${t.name}"></td>-->
+<!--                    <td class="text-left d-none d-sm-table-cell" th:text="${t.description}"></td>-->
+<!--                    <td class="text-left" th:text="name"></td>-->
+<!--                    <td th:text="${#temporals.format(t.date, 'dd-MM-yyyy')}"></td>-->
+
+<!--                    &lt;!&ndash;Days left&ndash;&gt;-->
+<!--                    <td class="text-center col-1">-->
+<!--                        &lt;!&ndash;/*/ <th:block th:include="fragments/days-left-until-deadline :: daysLeft(${t})"></th:block> /*/&ndash;&gt;-->
+<!--                    </td>-->
+<!--                    &lt;!&ndash;Completed/In progress&ndash;&gt;-->
+<!--                    <td>-->
+<!--                        <a th:href="${t.completed} ? ${'/profile/unmark-done/' + t.id} : ${'/profile/mark-done/' + t.id}"-->
+<!--                           th:class="${t.owner==null} ? 'disabled nav-link my-link' : 'nav-link my-link'"-->
+<!--                        ><i th:class="${t.completed} ? 'far fa-check-square my-check':'far fa-square my-check'"></i>-->
+<!--                        </a>-->
+<!--                    </td>-->
+
+<!--                </tr>-->
+
+<!--                <tr th:if="${user.tasksOwned.size()==0}">-->
+<!--                    <td colspan="5" th:text="${'There are no tasks assigned to '+ user.name}"></td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>-->
+<!--remain scroll position after redirect-->
+<!--<script src="static/js/main.js"></script>-->
+
+</body>
+</html>
